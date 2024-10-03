@@ -27,7 +27,7 @@ awk '/li/ { print $2 }' mail-list  # Aplica la expresión regular a todo el row
 awk '$1 ~ /J/' inventory-shipped  # Aplica la expresión regular al field 1
 awk 'BEGIN { print "He said \"hi!\" to her."}'
 # \\ \a \b \f \n \r \t \v \NNN \xHH \uHH \/ \" \$ \{
-awk 'BEGIN { x = "ABC"; gsub(//, "x", x); print x}'
+awk 'BEGIN { x = "ABC"; gsub(//, "x", x); print x}'  # letter spacing now is x
 # nonstandar character set -> [\x00-\x7F]
 # \y is the same than \b
 tolower()
@@ -52,10 +52,11 @@ awk '{ $6 = ($5 + $4 + $3 + $2); print $0 }' # created the six column
 OFS  # output fiel separator
 # If you change OFS, you have to change some field to apply the OFS change
 echo a b c d | awk '{ OFS = ":"; $1 = $1 #rebuild all fields; print $0 }'
-# you can decrement the number of fiels by decrementing NF
+# you can decrement the number of fields by decrementing NF
 echo a b c d | awk '{ NF = 2; print $0 }'
 FS # field separator
 # remove leading and trailing white spaces by rebuilding $0
 echo ' a b c d '|awk '{$1 = $1; print}'
 awk 'BEGIN { FS = "" }{print NF}' mail-list # Count amount of characters
 IGNORECASE=1
+
