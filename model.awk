@@ -16,3 +16,4 @@ print "SOME QUERY" |& "db_server"
 COMMAND |& getline VAR  # the output of COMMAND is sent through getline and VAR
                         # the record is not split into fields
 # search summary of ´getline´
+PROCINFO[service, "READ_TIMEOUT"] = 5000 # wait for 5 second

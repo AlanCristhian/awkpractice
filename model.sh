@@ -20,7 +20,7 @@ awk '$6 == "sep" { sum += $5} END {print sum/1024}'  # sum column 5
 # ignores new line after: ,{?:||&& do else
 f=""
 awk '{print("hi")}' $f
-export GAWK_MSG_SRC=1
+export GAWK_MSG_SRC=1  # display debug information
 
 # Regular expressions
 awk '/li/ { print $2 }' mail-list  # Aplica la expresión regular a todo el row
@@ -59,4 +59,4 @@ FS # field separator
 echo ' a b c d '|awk '{$1 = $1; print}'
 awk 'BEGIN { FS = "" }{print NF}' mail-list # Count amount of characters
 IGNORECASE=1
-
+export GAWK_READ_TIMEOUT=1000 # wait input for 1 second
