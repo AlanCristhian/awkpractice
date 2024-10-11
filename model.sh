@@ -49,7 +49,7 @@ awk '{ print $0 }' RS="u" mail-list
 awk '{ print $(2*2) }' mail-list  # evalúa la expresión dentro del paréntesis
 awk '{$2 = 10; print $0}' #changes what awk sees as field $2
 awk '{ $6 = ($5 + $4 + $3 + $2); print $0 }' # created the six column
-OFS  # output fiel separator
+OFS  # output fiels separator
 # If you change OFS, you have to change some field to apply the OFS change
 echo a b c d | awk '{ OFS = ":"; $1 = $1 #rebuild all fields; print $0 }'
 # you can decrement the number of fields by decrementing NF
@@ -60,3 +60,26 @@ echo ' a b c d '|awk '{$1 = $1; print}'
 awk 'BEGIN { FS = "" }{print NF}' mail-list # Count amount of characters
 IGNORECASE=1
 export GAWK_READ_TIMEOUT=1000 # wait input for 1 second
+
+# Print statement
+awk 'BEGIN { print "line one\nline two\nline three" }'
+awk '{ print $1, $2 }' inventory-shipped  # prints fiedl 1 and 2 separated by space
+awk '{ print $1 $2 }' inventory-shipped # merge field 1 and 2
+awk 'BEGIN { print "Month Crates"; print "----- ------" } { print $1, $2 }' inventory-shipped
+awk 'BEGIN { print "Month Crates"; print "----- ------" } { print $1, "      " $2 }' inventory-shipped
+# an output record is what a single print shows. Not lines only.
+ORS # output record separator
+awk 'BEGIN { OFS = ": "; ORS = "\n\n" } { print $1, $2 }' mail-list
+OFMT = "%.6g"  # format specification for string output
+awk 'BEGIN { OFMT = "%.0f"; print 17.23, 17.54 }'  # round to integers
+
+# ´printf´ statement
+printf FORMAT, ITEM1, ITEM2, ...
+
+# If one of the item expressions uses the ´>´ relational
+# operator it must be enclosed in parentheses.
+
+# ´OFS´ and ´ORS´ has no effect on ´printf´ statements.
+awk 'BEGIN { ORS = "\nOUCH!\n"; OFS = "+"; msg = "Don\47t Panic!"; printf "%s\n", msg }' # neither ´+´ nor ´OUCH´ apears in the output.
+# Look at Format-Control Letters on gawk.txt
+

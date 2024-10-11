@@ -19,3 +19,4 @@ COMMAND |& getline VAR  # the output of COMMAND is sent through getline and VAR
 # search summary of ´getline´
 PROCINFO[service, "READ_TIMEOUT"] = 5000 # wait for 5 second
 PROCINFO[service, "RETRY"] = 1 # retry once if error
+print ITEM1, ITEM2, ...
